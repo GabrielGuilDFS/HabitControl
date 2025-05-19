@@ -43,7 +43,7 @@ export default function LoginScreen() {
           style={styles.textInput}
           onChangeText={text => setSenha(text)}
         />
-        <TouchableOpacity style={styles.btnLogin} onPress={login}>
+        <TouchableOpacity style={styles.btnLogin} onPress={() => router.push('/Screens/home')}>
           <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.orText}>OU</Text>

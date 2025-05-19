@@ -40,7 +40,7 @@ export default function HomePage(){
           style={style.textInput}
           onChangeText={text => setSenha(text)}
         />
-        <TouchableOpacity style={style.btnCadastrar} onPress={()=> router.push('')}>
+        <TouchableOpacity style={style.btnCadastrar} onPress={()=> router.push('/Screens/login')}>
           <Text style={{color: 'white', textAlign:'center',}}>Cadastrar</Text>
         </TouchableOpacity>
       </View>

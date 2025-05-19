@@ -27,15 +27,15 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   headerTitle: {
-    fontSize: 30,  // 7% da largura da tela - fica responsivo
+    fontSize: 30, 
     fontWeight: 'bold',
     color: '#fff',
     marginLeft: 10,
   },
   image: {
-    width: width * 0.1,   // 10% da largura da tela
-    height: 40,           // fixo para manter proporção
-    resizeMode: 'contain', // mantém a proporção da imagem
+    width: width * 0.1,   
+    height: 40,           
+    resizeMode: 'contain', 
   },
 });
 
