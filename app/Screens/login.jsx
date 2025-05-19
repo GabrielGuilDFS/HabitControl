@@ -1,6 +1,11 @@
 import { useRouter } from 'expo-router';
 import { useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  SafeAreaView, StyleSheet,
+  Text, TextInput, TouchableOpacity, View
+} from "react-native";
 import Header from '../Components/header';
 
 const { width } = Dimensions.get('window');
@@ -21,7 +26,8 @@ export default function LoginScreen() {
       
       <View style={styles.body}>
         <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/')}>
-          <Text style={styles.btnText}>Voltar</Text>
+          <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
+          <Text style={styles.btnVoltarText}>Voltar</Text>
         </TouchableOpacity>
         <Text style={styles.txtLogin}>Login</Text>
         <TextInput
@@ -41,7 +47,7 @@ export default function LoginScreen() {
           <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.orText}>OU</Text>
-        <TouchableOpacity style={styles.btnCadastrese} onPress={() => router.push('CadastroScreen')}>
+        <TouchableOpacity style={styles.btnCadastrese} onPress={() => router.push('/Screens/cadastro')}>
           <Text style={styles.btnText}>Cadastre-se</Text>
         </TouchableOpacity>
         
@@ -105,7 +111,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#272343",
     borderRadius: 10,
     justifyContent: "center",
-    alignItems: "center",
+  },
+  btnVoltarText:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    top: -20,
+    left:10
     
   },
   btnText:{
@@ -118,5 +130,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 5,
     fontSize: 14,
-  }
+    marginBottom:10
+  },
+  image: {
+    width:30,  
+    height: 40,           
+    resizeMode: 'contain',
+    top:10,
+    left:5,
+  },
 });
