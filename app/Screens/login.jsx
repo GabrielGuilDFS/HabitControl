@@ -23,7 +23,6 @@ export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="HabitControl"/>
-      
       <View style={styles.body}>
         <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/')}>
           <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
@@ -50,7 +49,6 @@ export default function LoginScreen() {
         <TouchableOpacity style={styles.btnCadastrese} onPress={() => router.push('/Screens/cadastro')}>
           <Text style={styles.btnText}>Cadastre-se</Text>
         </TouchableOpacity>
-        
       </View>
     </SafeAreaView>
   );
@@ -67,20 +65,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  txtLogin:{
-    fontSize: 36,
-    fontWeight:'bold',
-    color:'white',
-    marginBottom: 30,
-  },
-  textInput:{
-    width: '100%',
-    maxWidth: 400,
+  btnVoltar: {
+    position: 'absolute',  
+    top: 80,            
+    left: 20,              
+    width: 100,
     height: 40,
-    backgroundColor: 'white',
+    backgroundColor: "#272343",
     borderRadius: 10,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    justifyContent: "center",
+  },
+  image: {
+    width:30,  
+    height: 40,           
+    resizeMode: 'contain',
+    top:10,
+    left:5,
+  },
+  btnVoltarText:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    top: -20,
+    left:10
   },
   btnLogin:{
     width: '100%',
@@ -92,33 +99,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
-  btnCadastrese:{
-    width: '100%',
-    maxWidth: 400,
-    height: 40,
-    backgroundColor: '#272343',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-   btnVoltar: {
-    position: 'absolute',  
-    top: 80,            
-    left: 20,              
-    width: 100,
-    height: 40,
-    backgroundColor: "#272343",
-    borderRadius: 10,
-    justifyContent: "center",
-  },
-  btnVoltarText:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    top: -20,
-    left:10
-    
+  txtLogin:{
+    fontSize: 36,
+    fontWeight:'bold',
+    color:'white',
+    marginBottom: 30,
   },
   btnText:{
     color: 'white',
@@ -132,11 +117,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom:10
   },
-  image: {
-    width:30,  
-    height: 40,           
-    resizeMode: 'contain',
-    top:10,
-    left:5,
+  btnCadastrese:{
+    width: '100%',
+    maxWidth: 400,
+    height: 40,
+    backgroundColor: '#272343',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  textInput:{
+    width: '100%',
+    maxWidth: 400,
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginBottom: 15,
   },
 });

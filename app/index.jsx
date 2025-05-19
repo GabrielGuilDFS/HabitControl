@@ -16,6 +16,16 @@ export default function HomePage(){
   )
 }
 const style = StyleSheet.create({
+  HomePage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems:"center",
+    backgroundColor:"#021123",
+  },
+  container: {
+    width: '90%',
+    alignItems: 'center',
+  },
   btnEntrar: {
     width:"40%",
     maxWidth:200,
@@ -29,20 +39,4 @@ const style = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-  HomePage: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems:"center",
-    backgroundColor:"#021123",
-  },
-  container: {
-    width: '90%',
-    alignItems: 'center',
-  },
-  welcomeText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 30,
-    marginBottom: 30,
-  }
 });

@@ -12,45 +12,18 @@ export default function HomePage(){
       </TouchableOpacity>
       <View style={styles.container}>
         <Text style={{color: 'white', fontSize:30,}}>Estatisticas</Text>
-        
       </View>
     </View>
   )
 }
 const styles = StyleSheet.create({
-  btnEntrar: {
-    width:"40%",
-    maxWidth:200,
-    height: 40,
-    backgroundColor: '#272343',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnVoltarText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    top: -20,
-    left:10
-  },
   HomePage: {
     flex: 1,
     justifyContent: "center",
     alignItems:"center",
     backgroundColor:"#021123",
   },
-  container: {
-    width: '90%',
-    alignItems: 'center',
-  },
-  welcomeText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 30,
-    marginBottom: 30,
-  },
-    btnVoltar: {
+  btnVoltar: {
     position: 'absolute',  
     top: 80,            
     left: 20,              
@@ -60,17 +33,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-},
-  btnText:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-},
+  },
   image: {
     width:30,  
     height: 40,           
     resizeMode: 'contain',
     top:10,
     right:30,
-},
+  },
+  btnVoltarText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    top: -20,
+    left:10
+  },
+  container: {
+    width: '90%',
+    alignItems: 'center',
+  },
 });
