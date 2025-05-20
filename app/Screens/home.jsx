@@ -20,7 +20,7 @@ export default function AdicionarHabitoScreen() {
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnEstatistica} onPress={()=> router.push('/Screens/estatistica')}>
           <Image style={styles.image} source={require('../assets/images/Estatistica_icon-removebg-preview (1) 6.png')} />
-          <Text style={(styles.btnNovoHabitoText)}>Estatisticas</Text>
+          <Text style={{color:'white'}}>Estatisticas</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
