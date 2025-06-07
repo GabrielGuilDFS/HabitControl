@@ -1,28 +1,37 @@
 import { useRouter } from 'expo-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from "react";
 import {
-  Dimensions,
   Image,
   SafeAreaView, StyleSheet,
   Text, TextInput, TouchableOpacity, View
 } from "react-native";
+import { auth } from "../../firebaseConfig";
 import Header from '../Components/header';
 
-const { width } = Dimensions.get('window');
-
-export default function LoginScreen() {
+export default function Login() {  
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  const login =() => {
-    alert(email);
-    alert(senha);
-  }
   const router = useRouter();
-  
+
+  const handleLogin = async () => {
+    if (!email || !senha) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+      alert("Login realizado com sucesso!");
+      router.push('/Screens/home');
+    } catch (error) {
+      console.error(error);
+      alert("Erro no login: " + error.message);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="HabitControl"/>
+      <Header title="HabitControl" />
       <View style={styles.body}>
         <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/')}>
           <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
@@ -42,11 +51,11 @@ export default function LoginScreen() {
           style={styles.textInput}
           onChangeText={text => setSenha(text)}
         />
-        <TouchableOpacity style={styles.btnLogin} onPress={() => router.push('/Screens/home')}>
+        <TouchableOpacity style={styles.btnLogin} onPress={handleLogin}>
           <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.orText}>OU</Text>
-        <TouchableOpacity style={styles.btnCadastrese} onPress={() => router.push('/Screens/cadastro')}>
+        <TouchableOpacity style={styles.btnCadastrese} onPress={() => router.push('/auth/cadastro')}>
           <Text style={styles.btnText}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>

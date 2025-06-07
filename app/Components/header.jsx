@@ -1,13 +1,12 @@
-import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const Header = ({ title }) => {
+const Header = () => {
   return (
     <View style={styles.header}>
       <Image style={styles.image} source={require('./LogoTipo.png')} />
-      <Text style={styles.headerTitle}>{title}</Text>
+      <Text style={styles.headerTitle}>Habit Control</Text>
     </View>
   );
 };
@@ -17,24 +16,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: '100%',
-    height: 60,  
+    height: 60,
     backgroundColor: 'black',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',     
+    justifyContent: 'center',
     zIndex: 999,
     elevation: 10,
+    paddingHorizontal: 10, // opcional: evita que fiquem colados na lateral
   },
   headerTitle: {
-    fontSize: 30, 
+    fontSize: 26, // um pouco menor para caber melhor
     fontWeight: 'bold',
     color: '#fff',
-    marginLeft: 10,
+    marginLeft: 10, // diminui o espaço entre logo e texto
   },
   image: {
-    width: width * 0.1,   
-    height: 40,           
-    resizeMode: 'contain', 
+    width: 35, // ajusta o tamanho para caber bem
+    height: 35,
+    resizeMode: 'contain',
   },
 });
 

@@ -8,15 +8,22 @@
     "scheme": "atividadereactnative",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleidentifier": "com.galaxies.firebase",
+      "googleServicesFile":"./GoogleServices-info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.galaxies.firebase",
+      "googleServicesFile":"./google-services.json"
+
+      
     },
     "web": {
       "bundler": "metro",
@@ -24,7 +31,19 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
       "expo-router",
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
       [
         "expo-splash-screen",
         {

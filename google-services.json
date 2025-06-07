@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "435999577168",
+    "project_id": "controle-de-habitos-cb2eb",
+    "storage_bucket": "controle-de-habitos-cb2eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435999577168:android:971a2b2c060d87ded62d55",
+        "android_client_info": {
+          "package_name": "com.galaxies.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435999577168-sobsvaf923iggepcllfdl4kveec9lmh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc5iUDN-N-oOd1-8xRudJuhIEzS-EBGgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435999577168-sobsvaf923iggepcllfdl4kveec9lmh0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "435999577168-bdg1fq4htrtshktkiop5uec65qhoe6f0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.galaxies.firebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
