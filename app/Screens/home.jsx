@@ -96,17 +96,6 @@ export default function HomeScreen() {
         >
           <Text style={{ color: 'white' }}>+ Novo Hábito</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.btnEstatistica}
-          onPress={() => router.push('/Screens/estatistica')}
-        >
-          <Image
-            style={styles.image}
-            source={require('../assets/images/Estatistica_icon-removebg-preview (1) 6.png')}
-          />
-          <Text style={{ color: 'white' }}>Estatísticas</Text>
-        </TouchableOpacity>
       </View>
 
       <ScrollView
@@ -165,15 +154,17 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  btnVoltar: {
+btnVoltar: {
   position: 'absolute',
-  top: 80,
+  top: 100,    // diminua esse valor para subir mais
   left: 20,
+  flexDirection: 'row',
+  alignItems: 'center',
   backgroundColor: "#272343",
   borderRadius: 10,
   paddingHorizontal: 10,
-  paddingVertical: 5,
-},
+  paddingVertical: 8,
+  },
 
 voltarContent: {
   flexDirection: 'row',
@@ -205,7 +196,7 @@ btnVoltarText: {
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: 20,
-    marginTop: 60,
+    marginTop:100,
   },
 
   // Container dos botões principais na tela (Novo Hábito e Estatísticas)
@@ -215,6 +206,7 @@ btnVoltarText: {
     flexDirection: 'row',
     padding: 10,
     justifyContent: 'center',
+    
   },
 
   // Botão Novo Hábito na tela inicial
@@ -227,7 +219,7 @@ btnVoltarText: {
     alignItems: "center",
   },
 
-  // Botão Estatística ao lado do Novo Hábito
+
   btnEstatistica: {
     width: 120,
     height: 40,
@@ -239,7 +231,6 @@ btnVoltarText: {
     flexDirection: 'row',
   },
 
-  // Ícone dentro do botão Estatística
   image: {
     width: 30,
     height: 30,
@@ -249,7 +240,7 @@ btnVoltarText: {
 
   // Lista de hábitos (ScrollView)
   listaHabitos: {
-    marginTop: 20,
+    marginBottom: 120,
   },
 
   // Container de cada hábito (item da lista)
@@ -295,7 +286,7 @@ btnVoltarText: {
 
   // Botão Finalizar
   btnFinalizar: {
-    backgroundColor: 'green',
+    backgroundColor: '#272343',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 6,
@@ -303,7 +294,7 @@ btnVoltarText: {
 
   // Botão Desistir
   btnDesistir: {
-    backgroundColor: 'red',
+    backgroundColor: '#272343',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 6,

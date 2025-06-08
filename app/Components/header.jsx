@@ -14,7 +14,7 @@ const Header = () => {
 const styles = StyleSheet.create({
   header: {
     position: 'absolute',
-    top: 0,
+    top: 28,
     width: '100%',
     height: 60,
     backgroundColor: 'black',

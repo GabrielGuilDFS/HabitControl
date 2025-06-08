@@ -2,13 +2,15 @@ import { useRouter } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from "react";
 import {
+  Dimensions,
   Image,
+  Platform,
   SafeAreaView, StyleSheet,
   Text, TextInput, TouchableOpacity, View
 } from "react-native";
 import { auth } from "../../firebaseConfig";
 import Header from '../Components/header';
-
+const { width, height } = Dimensions.get('window');
 export default function Login() {  
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -34,9 +36,9 @@ export default function Login() {
       <Header title="HabitControl" />
       <View style={styles.body}>
         <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/')}>
-          <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
-          <Text style={styles.btnVoltarText}>Voltar</Text>
-        </TouchableOpacity>
+    <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
+    <Text style={styles.btnVoltarText}>Voltar</Text>
+  </TouchableOpacity>
         <Text style={styles.txtLogin}>Login</Text>
         <TextInput
           placeholder="Seu E-mail"
@@ -64,69 +66,68 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: "#021123",
+    paddingTop: Platform.OS === 'android' ? 25 : 0, // para status bar em Android
   },
-  body:{
+  body: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
+    width: '100%',
   },
   btnVoltar: {
-    position: 'absolute',  
-    top: 80,            
-    left: 20,              
-    width: 100,
-    height: 40,
-    backgroundColor: "#272343",
-    borderRadius: 10,
-    justifyContent: "center",
+  position: 'absolute',
+  top: 80,    // diminua esse valor para subir mais
+  left: 20,
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: "#272343",
+  borderRadius: 10,
+  paddingHorizontal: 10,
+  paddingVertical: 8,
   },
   image: {
-    width:30,  
-    height: 40,           
+    width: 20,
+    height: 20,
     resizeMode: 'contain',
-    top:10,
-    left:5,
+    marginRight: 8,
   },
-  btnVoltarText:{
+  btnVoltarText: {
     color: 'white',
-    textAlign: 'center',
     fontSize: 16,
-    top: -20,
-    left:10
   },
-  btnLogin:{
+  txtLogin: {
+    fontSize: width * 0.1, // fonte proporcional à largura da tela
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 30,
+  },
+  btnLogin: {
     width: '100%',
     maxWidth: 400,
     height: 45,
-    backgroundColor:'#272343',
+    backgroundColor: '#272343',
     borderRadius: 10,
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
   },
-  txtLogin:{
-    fontSize: 36,
-    fontWeight:'bold',
-    color:'white',
-    marginBottom: 30,
-  },
-  btnText:{
+  btnText: {
     color: 'white',
-    textAlign: 'center',
     fontSize: 16,
+    textAlign: 'center',
   },
-  orText:{
+  orText: {
     color: 'white',
     textAlign: 'center',
     paddingVertical: 5,
     fontSize: 14,
-    marginBottom:10
+    marginBottom: 10,
   },
-  btnCadastrese:{
+  btnCadastrese: {
     width: '100%',
     maxWidth: 400,
     height: 40,
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  textInput:{
+  textInput: {
     width: '100%',
     maxWidth: 400,
     height: 40,

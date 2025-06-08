@@ -5,14 +5,12 @@ import { useEffect, useState } from 'react';
 import {
   Image,
   Platform,
-  SafeAreaView,
-  Text,
+  SafeAreaView, StyleSheet, Text,
   TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
 import Header from '../Components/header';
-import styles from '../styles'; // Certifique-se que esse arquivo existe
 
 // Função auxiliar para solicitar permissão para notificações
 async function solicitarPermissao() {
@@ -24,11 +22,17 @@ async function solicitarPermissao() {
 
 // Configuração do handler para notificações
 Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
+  handleNotification: async () => {
+    // Vibra ao receber notificação (exceto Web)
+    if (Platform.OS !== 'web') {
+      Vibration.vibrate(500); // vibração de 500ms
+    }
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: true, // ativa som padrão
+      shouldSetBadge: false,
+    };
+  },
 });
 
 export default function AdicionarHabito() {
@@ -38,16 +42,8 @@ export default function AdicionarHabito() {
   const [vezesPDia, setVezesPDia] = useState('');
   const [intervaloMin, setIntervaloMin] = useState('');
   const [nota, setNota] = useState('');
-
   const [selecionado1, setSelecionado1] = useState(false);
   const [selecionado2, setSelecionado2] = useState(false);
-
-  useEffect(() => {
-    if (Platform.OS !== 'web') {
-      solicitarPermissao();
-    }
-  }, []);
-
   const alternarMarcacao1 = () => {
     setSelecionado1(!selecionado1);
     if (!selecionado1) setSelecionado2(false);
@@ -57,21 +53,28 @@ export default function AdicionarHabito() {
     setSelecionado2(!selecionado2);
     if (!selecionado2) setSelecionado1(false);
   };
+  useEffect(() => {
+    if (Platform.OS !== 'web') {
+      solicitarPermissao();
+    }
+  }, []);
 
   // Função para agendar notificações locais
   async function agendarNotificacoes(habito) {
     const { vezesPDia, intervaloMin, nome } = habito;
 
     if (Platform.OS !== 'web') {
+      // Cancela notificações agendadas antes de criar novas
       await Notifications.cancelAllScheduledNotificationsAsync();
 
       for (let i = 0; i < vezesPDia; i++) {
-        const segundosAguardar = (i + 1) * intervaloMin * 60;
+        const segundosAguardar = (i + 1) * intervaloMin * 60 ;
 
         await Notifications.scheduleNotificationAsync({
           content: {
             title: 'Lembrete de Hábito',
             body: `Hora de: ${nome}`,
+            sound: 'default',  // garante som padrão
           },
           trigger: {
             seconds: segundosAguardar,
@@ -80,7 +83,7 @@ export default function AdicionarHabito() {
         });
       }
     } else {
-      // Web fallback
+      // Código para notificações na Web (opcional)
       if (!('Notification' in window)) {
         alert('Seu navegador não suporta notificações.');
         return;
@@ -101,9 +104,18 @@ export default function AdicionarHabito() {
     }
   }
 
+  // Função para salvar hábito e agendar notificações
   const salvarHabito = async () => {
     if (!nome || (!selecionado1 && !selecionado2) || !vezesPDia || !intervaloMin) {
       alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    const vezesPDiaInt = parseInt(vezesPDia, 10);
+    const intervaloMinInt = parseInt(intervaloMin, 10);
+
+    if (isNaN(vezesPDiaInt) || isNaN(intervaloMinInt)) {
+      alert('Por favor, insira valores numéricos válidos.');
       return;
     }
 
@@ -111,8 +123,8 @@ export default function AdicionarHabito() {
       id: Date.now().toString(),
       nome,
       frequencia: selecionado1 ? 'diária' : selecionado2 ? 'semanal' : '',
-      vezesPDia: parseInt(vezesPDia, 10),
-      intervaloMin: parseInt(intervaloMin, 10),
+      vezesPDia: vezesPDiaInt,
+      intervaloMin: intervaloMinInt,
       nota,
     };
 
@@ -128,15 +140,8 @@ export default function AdicionarHabito() {
 
       router.push('/Screens/home');
     } catch (error) {
-      console.error('❌ Erro ao salvar hábito:', error);
-
-      if (error instanceof SyntaxError) {
-        console.error('Erro de parse JSON:', error.message);
-      } else if (error.message) {
-        console.error('Mensagem do erro:', error.message);
-      }
-
-      alert('Erro ao salvar hábito. Verifique os detalhes no console.');
+      console.error('Erro ao salvar hábito:', error);
+      alert('Erro ao salvar hábito. Veja o console para mais detalhes.');
     }
   };
 
@@ -146,7 +151,7 @@ export default function AdicionarHabito() {
       <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/Screens/home')}>
         <Image
           style={styles.image}
-          source={require('../assets/images/botaoVoltar 1.png')}
+          source={require('../assets/images/botaoVoltar1.png')} // ✅ Sugestão: use botaoVoltar1.png sem espaço
         />
         <Text style={styles.btnVoltarText}>Voltar</Text>
       </TouchableOpacity>
@@ -213,7 +218,6 @@ export default function AdicionarHabito() {
   );
 }
 
-
 const styles = StyleSheet.create({
   btnSalvar: {
     width: 160,
@@ -226,7 +230,7 @@ const styles = StyleSheet.create({
   },
   btnVoltar: {
     position: 'absolute',
-    top: 80,
+    top: 100,
     left: 20,
     width: 100,
     height: 40,

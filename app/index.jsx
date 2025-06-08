@@ -1,21 +1,22 @@
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import 'react-native-get-random-values';
-import Header from "./Components/header";
 
 export default function AuthIndex() {
   const router = useRouter();
   return (
-    <View style={styles.AuthIndex}>
-      <Header title="HabitControl" />
-      <View style={styles.container}>
-        <Text style={styles.welcomeText}>Seja bem-vindo ao HabitControl</Text>
-        <TouchableOpacity
-          style={styles.btnEntrar}
-          onPress={() => router.push('/auth/login')}
-        >
-          <Text style={styles.btnText}>Entrar</Text>
-        </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      
+      <View style={styles.AuthIndex}>
+        <View style={styles.container}>
+          <Text style={styles.welcomeText}>Seja bem-vindo ao HabitControl</Text>
+          <TouchableOpacity
+            style={styles.btnEntrar}
+            onPress={() => router.push('/auth/login')}
+          >
+            <Text style={styles.btnText}>Entrar</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

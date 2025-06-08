@@ -84,7 +84,7 @@ const style = StyleSheet.create({
   },
   btnVoltar: {
     position: 'absolute',
-    top: 80,
+    top: 100,
     left: 20,
     width: 100,
     height: 40,
