@@ -83,30 +83,26 @@ const style = StyleSheet.create({
     backgroundColor: "#021123",
   },
   btnVoltar: {
-    position: 'absolute',
-    top: 100,
-    left: 20,
-    width: 100,
-    height: 40,
-    backgroundColor: "#272343",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: 30,
-    height: 40,
-    resizeMode: 'contain',
-    top: 10,
-    right: 30,
-  },
-  btnVoltarText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    top: -20,
-    left: 10
-  },
+  position: 'absolute',
+  top: 100,
+  left: 20,
+  paddingHorizontal: 10,
+  height: 40,
+  backgroundColor: "#272343",
+  borderRadius: 10,
+  flexDirection: 'row',     // <- Alinha lado a lado
+  alignItems: 'center',     // <- Centraliza verticalmente
+},
+image: {
+  width: 26,
+  height: 26,
+  resizeMode: 'contain',
+  marginRight: 8,           // <- Espaço entre a imagem e o texto
+},
+btnVoltarText: {
+  color: 'white',
+  fontSize: 16,
+},
   btnCadastrar: {
     width: "100%",
     maxWidth: 400,
