@@ -8,11 +8,13 @@
     "scheme": "atividadereactnative",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "ios": {
       "supportsTablet": true,
-      "bundleidentifier": "com.galaxies.firebase",
-      "googleServicesFile":"./GoogleServices-info.plist"
+      "bundleIdentifier": "com.galaxies.firebase",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,9 +23,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.galaxies.firebase",
-      "googleServicesFile":"./google-services.json"
-
-      
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -35,7 +35,13 @@
       "@react-native-firebase/auth",
       "@react-native-firebase/crashlytics",
       "expo-router",
-      "expo-notifications",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#000000"
+        }
+      ],
       [
         "expo-build-properties",
         {
@@ -54,8 +60,17 @@
         }
       ]
     ],
+    "cli": {
+      "appVersionSource": "appVersion"
+    },
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1d7d1f9d-6e25-487d-803d-d188e56d960e"
+      }
     }
   }
 }

@@ -4,18 +4,24 @@ import { useEffect, useState } from 'react';
 import {
   Alert,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Header from "../Components/header";
+
 
 export default function HomeScreen() {
   const router = useRouter();
   const [habitos, setHabitos] = useState([]);
+  const insets = useSafeAreaInsets();
+
 
   useEffect(() => {
     const carregarHabitos = async () => {
@@ -84,12 +90,12 @@ export default function HomeScreen() {
     }
   };
 
-  return (
+   return (
     <SafeAreaView style={styles.container}>
       <Header title="HabitControl" />
       <Text style={styles.welcomeText}>Bem-vindo, Usuário!</Text>
 
-      <View style={styles.conteinerBotoes}>
+      <View style={styles.containerBotoes}>
         <TouchableOpacity
           style={styles.btnNovoHabito}
           onPress={() => router.push('/Screens/adicionarHab')}
@@ -105,9 +111,10 @@ export default function HomeScreen() {
           flexGrow: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          paddingBottom: insets.bottom + 20, // <- Ajuste aqui
         }}
       >
-        <View style={{ width: 500, maxWidth: '100%' }}>
+        <View style={styles.habitosWrapper}>
           {habitos.length > 0 ? (
             habitos.map((habito) => (
               <View key={habito.id} style={styles.habitoContainer}>
@@ -139,189 +146,140 @@ export default function HomeScreen() {
           ) : (
             <Text style={styles.habitoInfo}>Nenhum hábito salvo ainda.</Text>
           )}
-          
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/auth/login')}>
+
+      <TouchableOpacity
+        style={styles.btnVoltar}
+        onPress={() => router.push('/auth/login')}
+      >
         <View style={styles.voltarContent}>
-          <Image style={styles.image} source={require('../assets/images/botaoVoltar 1.png')} />
+          <Image
+            style={styles.image}
+            source={require('../assets/images/botaoVoltar 1.png')}
+          />
           <Text style={styles.btnVoltarText}>Voltar</Text>
         </View>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-btnVoltar: {
-  position: 'absolute',
-  top: 100,    // diminua esse valor para subir mais
-  left: 20,
-  flexDirection: 'row',
-  alignItems: 'center',
-  backgroundColor: "#272343",
-  borderRadius: 10,
-  paddingHorizontal: 10,
-  paddingVertical: 8,
-  },
-
-voltarContent: {
-  flexDirection: 'row',
-  alignItems: 'center',
-},
-
-image: {
-  width: 30,
-  height: 30,  
-  resizeMode: 'contain',
-  marginRight: 8,
-},
-
-btnVoltarText: {
-  color: 'white',
-  fontSize: 16,
-},
   container: {
     flex: 1,
     backgroundColor: '#021123',
-    paddingTop: 60,
-    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingHorizontal: 16,
   },
-
-  // Texto de boas-vindas no topo
   welcomeText: {
-    fontSize: 28,
+    fontSize: 24,
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: 20,
-    marginTop:100,
+    marginTop: 20,
   },
-
-  // Container dos botões principais na tela (Novo Hábito e Estatísticas)
-  conteinerBotoes: {
-    width: "100%",
-    height: 60,
+  containerBotoes: {
+    width: '100%',
     flexDirection: 'row',
-    padding: 10,
     justifyContent: 'center',
+    marginBottom: 10,
+    paddingBottom:40
     
   },
-
-  // Botão Novo Hábito na tela inicial
   btnNovoHabito: {
-    width: 100,
+    minWidth: '40%',
     height: 40,
-    backgroundColor: "#272343",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-
-  btnEstatistica: {
-    width: 120,
-    height: 40,
-    backgroundColor: "#272343",
+    backgroundColor: '#272343',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 20,
-    flexDirection: 'row',
+    paddingHorizontal: 12,
+    marginTop: 80,
   },
-
-  image: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
-    resizeMode: 'contain',
-  },
-
-  // Lista de hábitos (ScrollView)
   listaHabitos: {
-    marginBottom: 120,
+    flexGrow: 1,
+    width: '100%',
   },
-
-  // Container de cada hábito (item da lista)
- habitoContainer: {
-  backgroundColor: '#021123',
-  padding: 15,
-  borderRadius: 10,
-  marginBottom: 10,
-  borderWidth: 2,
-  borderColor: '#272343',
-  maxWidth: 500,
- 
-},
-  // Conteúdo interno do hábito (texto + botões)
+  habitosWrapper: {
+    width: '100%',
+    maxWidth: 600,
+    paddingHorizontal: 20,
+  },
+  habitoContainer: {
+    backgroundColor: '#021123',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: '#272343',
+    width: '100%',
+  },
   habitoContent: {
-    flexDirection: 'row',
-    alignItems: 'center', // centraliza verticalmente texto e botões
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
-
-  // Texto do nome do hábito
   habitoNome: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 6,
   },
-
-  // Texto de informações do hábito (frequência, etc)
   habitoInfo: {
     color: '#ccc',
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 15,
+    marginBottom: 3,
   },
-
-  // Container dos botões Finalizar e Desistir na lista de hábitos
   botoesContainer: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'flex-end', // alinhado à direita
-    alignItems: 'center',       // centralizado verticalmente
-    gap: 10,
-    marginLeft: 15,             // separação do texto
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+    gap: 8,
+    flexWrap: 'wrap',
   },
-
-  // Botão Finalizar
   btnFinalizar: {
     backgroundColor: '#272343',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 6,
+    width: '48%',
   },
-
-  // Botão Desistir
   btnDesistir: {
     backgroundColor: '#272343',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 6,
+    width: '48%',
   },
-
-  // Botão para limpar hábito (usado onde?)
-  btnLimparHabito: {
-    width: 120,
-    height: 40,
-    backgroundColor: '#8B0000',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 20,
-  },
-
-  // Botão Excluir hábito (se ainda for usado)
-  btnExcluirHabito: {
+  btnVoltar: {
     position: 'absolute',
-    right: 16,
-    top: '50%',
-    transform: [{ translateY: -15 }],
-    backgroundColor: '#E53935',
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    justifyContent: 'center',
+    top: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 60,
+    left: 16,
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#272343',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginTop:70
+  },
+  voltarContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  image: {
+    width: 26,
+    height: 26,
+    resizeMode: 'contain',
+    marginRight: 6,
+  },
+  btnVoltarText: {
+    color: 'white',
+    fontSize: 16,
   },
 });

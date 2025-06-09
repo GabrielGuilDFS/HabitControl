@@ -148,14 +148,17 @@ export default function AdicionarHabito() {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="HabitControl" />
+
       <TouchableOpacity style={styles.btnVoltar} onPress={() => router.push('/Screens/home')}>
         <Image
           style={styles.image}
-          source={require('../assets/images/botaoVoltar1.png')} // ✅ Sugestão: use botaoVoltar1.png sem espaço
+          source={require('../assets/images/botaoVoltar 1.png')}
         />
         <Text style={styles.btnVoltarText}>Voltar</Text>
       </TouchableOpacity>
+
       <Text style={styles.welcomeText}>Adicionar Hábito</Text>
+
       <View style={styles.containerForm}>
         <Text style={styles.label}>Nome do Hábito</Text>
         <TextInput
@@ -179,7 +182,7 @@ export default function AdicionarHabito() {
         </View>
 
         <Text style={styles.texto3}>Definir Timer</Text>
-        <Text style={{ color: 'white', fontSize: 18 }}>Vezes ao dia:</Text>
+        <Text style={styles.subLabel}>Vezes ao dia:</Text>
         <TextInput
           style={styles.inputLinha}
           keyboardType="numeric"
@@ -189,9 +192,7 @@ export default function AdicionarHabito() {
           onChangeText={text => setVezesPDia(text.replace(/[^0-9]/g, ''))}
         />
 
-        <Text style={{ color: 'white', fontSize: 18, paddingTop: 20 }}>
-          Tempo entre notificações (min):
-        </Text>
+        <Text style={styles.subLabel}>Tempo entre notificações (min):</Text>
         <TextInput
           style={styles.inputLinha}
           keyboardType="numeric"
@@ -201,7 +202,7 @@ export default function AdicionarHabito() {
           onChangeText={text => setIntervaloMin(text.replace(/[^0-9]/g, ''))}
         />
 
-        <Text style={{ color: 'white', fontSize: 18, paddingTop: 20 }}>Nota sobre o hábito</Text>
+        <Text style={styles.subLabel}>Nota sobre o hábito</Text>
         <TextInput
           placeholder="Digite notas aqui..."
           placeholderTextColor="#aaa"
@@ -212,52 +213,67 @@ export default function AdicionarHabito() {
       </View>
 
       <TouchableOpacity style={styles.btnSalvar} onPress={salvarHabito}>
-        <Text style={{ color: 'white', fontSize: 18 }}>Salvar Hábito</Text>
+        <Text style={styles.btnSalvarText}>Salvar Hábito</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  btnSalvar: {
-    width: 160,
-    height: 40,
-    backgroundColor: '#272343',
-    borderRadius: 10,
-    justifyContent: 'center',
+  container: {
+    flex: 1,
+    backgroundColor: '#021123',
+    paddingTop: 60,
     alignItems: 'center',
-    marginTop: 20,
+    paddingHorizontal: 16,
   },
   btnVoltar: {
-    position: 'absolute',
-    top: 100,
-    left: 20,
-    width: 100,
-    height: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#272343',
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    alignSelf: 'flex-start',
+    marginTop: 60,
   },
   btnVoltarText: {
     color: 'white',
-    textAlign: 'center',
     fontSize: 16,
-    top: -20,
-    left: 10,
+    marginLeft: 5,
   },
   image: {
-    width: 30,
-    height: 40,
-    resizeMode: 'contain',
-    top: 10,
-    right: 30,
+  width: 30,
+  height: 30,  
+  resizeMode: 'contain',
+  marginRight: 8,
+  },
+  welcomeText: {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginVertical: 20,
+  },
+  containerForm: {
+    backgroundColor: '#021123',
+    width: '100%',
+    maxWidth: 500,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 10,
   },
   label: {
     color: 'white',
     fontSize: 20,
     marginBottom: 8,
-    marginTop: 10,
+  },
+  subLabel: {
+    color: 'white',
+    fontSize: 18,
+    marginTop: 20,
   },
   inputLinha: {
     borderBottomWidth: 2,
@@ -266,30 +282,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#021123',
-    paddingTop: 80,
-    paddingHorizontal: 0,
+  containerMark: {
+    flexDirection: 'row',
     alignItems: 'center',
-  },
-  welcomeText: {
-    fontSize: 28,
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: 30,
-    marginTop: 100,
-  },
-  containerForm: {
-    backgroundColor: '#021123',
-    width: '95%',
-    maxWidth: 500,
-    height: 400,
-    paddingHorizontal: 20,
-    borderWidth: 3,
-    borderRadius: 10,
-    borderColor: 'white',
+    flexWrap: 'wrap',
+    marginVertical: 10,
   },
   marcador: {
     width: 24,
@@ -309,8 +306,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 5,
-    marginLeft: 30,
+    marginLeft: 20,
   },
   marcadoInterno: {
     width: 12,
@@ -320,21 +316,27 @@ const styles = StyleSheet.create({
   },
   texto: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
   },
   texto2: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
   },
   texto3: {
     color: 'white',
     fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 15,
+    marginTop: 20,
+    marginBottom: 10,
   },
-  containerMark: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
+  btnSalvar: {
+    backgroundColor: '#272343',
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    marginTop: 20,
+  },
+  btnSalvarText: {
+    color: 'white',
+    fontSize: 18,
   },
 });
