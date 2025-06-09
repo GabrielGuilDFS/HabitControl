@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import Header from '../Components/header';
 
-// Função auxiliar para solicitar permissão para notificações
 async function solicitarPermissao() {
   const { status } = await Notifications.requestPermissionsAsync();
   if (status !== 'granted') {
@@ -20,16 +19,16 @@ async function solicitarPermissao() {
   }
 }
 
-// Configuração do handler para notificações
+
 Notifications.setNotificationHandler({
   handleNotification: async () => {
-    // Vibra ao receber notificação (exceto Web)
+  
     if (Platform.OS !== 'web') {
-      Vibration.vibrate(500); // vibração de 500ms
+      Vibration.vibrate(500);
     }
     return {
       shouldShowAlert: true,
-      shouldPlaySound: true, // ativa som padrão
+      shouldPlaySound: true, 
       shouldSetBadge: false,
     };
   },
@@ -59,12 +58,12 @@ export default function AdicionarHabito() {
     }
   }, []);
 
-  // Função para agendar notificações locais
+  
   async function agendarNotificacoes(habito) {
     const { vezesPDia, intervaloMin, nome } = habito;
 
     if (Platform.OS !== 'web') {
-      // Cancela notificações agendadas antes de criar novas
+      
       await Notifications.cancelAllScheduledNotificationsAsync();
 
       for (let i = 0; i < vezesPDia; i++) {
@@ -74,7 +73,7 @@ export default function AdicionarHabito() {
           content: {
             title: 'Lembrete de Hábito',
             body: `Hora de: ${nome}`,
-            sound: 'default',  // garante som padrão
+            sound: 'default',  
           },
           trigger: {
             seconds: segundosAguardar,
@@ -83,7 +82,7 @@ export default function AdicionarHabito() {
         });
       }
     } else {
-      // Código para notificações na Web (opcional)
+      
       if (!('Notification' in window)) {
         alert('Seu navegador não suporta notificações.');
         return;
@@ -104,7 +103,7 @@ export default function AdicionarHabito() {
     }
   }
 
-  // Função para salvar hábito e agendar notificações
+  
   const salvarHabito = async () => {
     if (!nome || (!selecionado1 && !selecionado2) || !vezesPDia || !intervaloMin) {
       alert('Por favor, preencha todos os campos obrigatórios.');

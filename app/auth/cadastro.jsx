@@ -90,14 +90,14 @@ const style = StyleSheet.create({
   height: 40,
   backgroundColor: "#272343",
   borderRadius: 10,
-  flexDirection: 'row',     // <- Alinha lado a lado
-  alignItems: 'center',     // <- Centraliza verticalmente
+  flexDirection: 'row',    
+  alignItems: 'center',   
 },
 image: {
   width: 26,
   height: 26,
   resizeMode: 'contain',
-  marginRight: 8,           // <- Espaço entre a imagem e o texto
+  marginRight: 8,         
 },
 btnVoltarText: {
   color: 'white',
