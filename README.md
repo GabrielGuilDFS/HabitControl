@@ -16,3 +16,10 @@ Alarme: É um alarme que é acionado para chamar a atenção do usuário, para q
 
 Notificações: São notificações de aviso, onde o usuário recebe em sua barra de notificações, para que fique possível ver e ficar atento a uma tarefa notificada.
 
+3. Guia de uso
+
+   Tela de Inicio
+
+   <img width="283" height="678" alt="Screenshot 2025-08-06 141028" src="https://github.com/user-attachments/assets/25393b05-9450-4594-a0b5-9c7e725c21b5" />
+
+
